@@ -1,9 +1,20 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
+/** Must match `site` — used for sitemap URLs. */
+const site = 'https://oopbuyai.com';
+
 export default defineConfig({
-  site: 'https://oopbuyai.com',
-  integrations: [sitemap()],
+  site,
+  integrations: [
+    sitemap({
+      /** Prerendered `index.html.ts` endpoints are not listed as page routes — add manually. */
+      customPages: [
+        new URL('/news/oopbuy-activity/', site).href,
+        new URL('/news/openstar-recruit/', site).href,
+      ],
+    }),
+  ],
   compressHTML: true,
   i18n: {
     defaultLocale: 'en',
