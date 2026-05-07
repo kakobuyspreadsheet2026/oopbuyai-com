@@ -1,13 +1,17 @@
 ---
-import { defaultFloatingWhatsappUrl, defaultOopbuyDiscordUrl } from '../consts';
+import {
+  defaultFloatingIntroVideoUrl,
+  defaultFloatingWhatsappUrl,
+  defaultOopbuyDiscordUrl,
+} from '../consts';
 
 /**
  * Floating dock: inline intro video panel + outbound links.
- * Static file default: `/videos/opb_20250428_intro.mp4`.
- * Override with `PUBLIC_FLOAT_VIDEO_URL` (path like `/videos/foo.mp4` or absolute URL).
+ * Default: Oopbuy CDN MP4 (`defaultFloatingIntroVideoUrl` in consts.ts).
+ * Override with `PUBLIC_FLOAT_VIDEO_URL` (HTTPS URL or same-origin path).
  */
 const introVideoSrc =
-  import.meta.env.PUBLIC_FLOAT_VIDEO_URL?.trim() || '/videos/opb_20250428_intro.mp4';
+  import.meta.env.PUBLIC_FLOAT_VIDEO_URL?.trim() || defaultFloatingIntroVideoUrl;
 const discordUrl =
   import.meta.env.PUBLIC_FLOAT_DISCORD_URL?.trim() || defaultOopbuyDiscordUrl;
 const redditUrl =

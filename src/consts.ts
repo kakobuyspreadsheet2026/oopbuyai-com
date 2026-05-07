@@ -20,6 +20,13 @@ export const defaultOopbuyDiscordUrl = 'https://discord.gg/9hrqg53zgs';
 export const defaultFloatingWhatsappUrl = 'https://wa.me/447594927259';
 
 /**
+ * Default floating-dock intro MP4 (Oopbuy / hahbuy CDN). Not stored in this repo.
+ * Override with `PUBLIC_FLOAT_VIDEO_URL` (any HTTPS MP4 or same-origin path).
+ */
+export const defaultFloatingIntroVideoUrl =
+  'https://libcdn1.hahbuy.com/public/opb_20250428_intro.mp4?_t=1';
+
+/**
  * Default Open Graph / Twitter preview image (public path, resolved with `Astro.site`).
  * Standard 1200×630 for large social link previews.
  */
