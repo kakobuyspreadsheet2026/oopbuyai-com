@@ -1,0 +1,68 @@
+import type { SpreadsheetPageCopy } from '../spreadsheetCopy.types';
+
+export const de: SpreadsheetPageCopy = {
+  title: 'Oopbuy Spreadsheet — kuratierte Links, QC-Hinweise & Kategorien | oopbuyai.com',
+  description:
+    'Oopbuy Spreadsheet erklärt: Weidian/Taobao/1688-Stil Katalog, QC wo sichtbar, Kategorien, FAQ und Paste-Link Ablauf für Oopbuy — redaktionell, kein Checkout.',
+  keywords:
+    'Oopbuy Spreadsheet, Weidian, Taobao Agent, QC Fotos, Spreadsheet China, Maison Looks',
+  backHomeLabel: '← Zur Startseite',
+  h1: 'Oopbuy Spreadsheet',
+  h2Hero: 'Tausende kuratierte Marketplace-Links — sortierte Kategorien, schnellere Discovery.',
+  subhead:
+    'Finde Sneaker, Jacken, Shirts, Hoodies, Taschen, Elektronik im Live-Katalog — stabile Produkt-URLs dann in Oopbuy einfügen für Lager-QC und internationalen Versand.',
+  introHtml: `oopbuyai.com ist ein <strong>Bookmark-Hub</strong>: Wir erklären, wie Spreadsheet-Jargon zur Entdeckung im <strong><a href="{ml}" target="_blank" rel="noopener noreferrer">Katalog-Browse</a></strong> passt. Kauf, Zahlung, echte QC im Agent-Konto, Paketwahl, Zoll Risiko liegen immer auf <strong><a href="{oopbuyUrl}" target="_blank" rel="noopener noreferrer">Oopbuy</a></strong>. Für Exzerpte <a href="{newsUrl}">News</a>; Schritte unter <a href="{howToUrl}">So kaufen</a>.`,
+  heroTags: ['10k+ indexierte Links', 'QC wenn im Listing', 'Katalog Updates', 'Kategorie-Kürzel', 'Einsteiger-Text', 'Bestellung auf Oopbuy'],
+  whatIsTitle: 'Was ist das Oopbuy Spreadsheet?',
+  whatIsBodyHtml: `„Spreadsheets“ sind geteilte Tabellen als Shortcuts zu chinesischen Listings — Schuhe, Streetwear, Tech, Taschen. Der verlinkte <strong><a href="{ml}" target="_blank" rel="noopener noreferrer">Browse</a></strong> bündelt Einstiegspunkte in Kategorie-Spuren zum Filtern, Preisen und Kopieren stabiler URLs.<br/><br/>Manche Zeilen zeigen QC-Still — nur als Orientierung bis deine Lager-QC bei <strong><a href="{oopbuyUrl}" target="_blank" rel="noopener noreferrer">Oopbuy</a></strong> landet. Diese Domain lagert nichts und nimmt keine Zahlungen an.`,
+  learnMoreLabel: 'Mehr erfahren →',
+  previewTitle: 'Beispiel-Find-Typen',
+  previewIntroHtml: `Die Karten zeigen <strong>typische Archetypen</strong> (Retro-Sneaker, gewaschene Tees, Zip-Hoodies, Crossbody, Jersey, Earbuds). Zeilen im Sheet rotieren; Preise sind indikativ ohne Landed Cost. Live-Bestand im <strong><a href="{ml}" target="_blank" rel="noopener noreferrer">Browse</a></strong>.`,
+  previewFiltersLabel: 'Beliebte Filter:',
+  previewCards: [
+    { title: 'Retro-Laufsneaker', category: 'Schuhe', priceHint: 'Ab ~32 $', tagsLine: 'QC wenn da · verifizierter Stil · Trend' },
+    { title: 'Oversized Washed Shirt', category: 'T-Shirts', priceHint: 'Ab ~14 $', tagsLine: 'Streetwear · Budget · Fit' },
+    { title: 'Essential Zip-Hoodie', category: 'Hoodies', priceHint: 'Ab ~28 $', tagsLine: 'QC wenn da · relaxed · Reorders' },
+    { title: 'Utility Crossbody', category: 'Taschen', priceHint: 'Ab ~21 $', tagsLine: 'Alltag · clean · Seller-Lane' },
+    { title: 'Sport-Mesh-Trikot', category: 'Jersey', priceHint: 'Ab ~19 $', tagsLine: 'Leicht · batch-abhängig · Value' },
+    { title: 'Wireless Gaming Buds', category: 'Elektronik', priceHint: 'Ab ~26 $', tagsLine: 'Tech · neu prüfen · Reviews lesen' },
+  ],
+  whyTitle: 'Warum ein Spreadsheet zum Stöbern?',
+  whyItems: [
+    { title: 'Kuratiert statt Zufallssuche', body: 'Kachel → gefilterter Browse statt endloser Seller-Suche.' },
+    { title: 'QC-Referenzen (wenn vorhanden)', body: 'Listing-QC orientiert — Lager-QC bei Oopbuy bleibt maßgeblich.' },
+    { title: 'Kategorie-Navigation', body: 'Sneaker, Outerwear, Bags, Tech, Budget-Pfade getrennt.' },
+    { title: 'Schnellere Discovery', body: 'URLs stehen kompakt zum Einfügen im Agent-Formular.' },
+    { title: 'Archetypen vergleichen', body: 'Mehr Silhouetten/Preisregionen in einer Session scannen.' },
+    { title: 'Einsteiger-Sprache', body: 'Discord-Slang wird hier + „So kaufen“ in Schritte übersetzt.' },
+  ],
+  howTitle: 'So nutzt du das Oopbuy Spreadsheet',
+  howSteps: [
+    { title: 'Schritt 1 — Kategorie wählen', body: 'Schuhe, Hoodies, Taschen, Tech oder Suche im UI.' },
+    { title: 'Schritt 2 — Listing prüfen', body: 'Größe, Batch-Notizen, QC lesen. Volle Produkt-URL kopieren.' },
+    { title: 'Schritt 3 — Über Oopbuy', body: 'Link einfügen, inländisch zahlen, Wareneingang abwarten.' },
+    { title: 'Schritt 4 — Lager-QC', body: 'Freigabe nur nach echten Oopbuy-Fotos — nicht überspringen.' },
+    { title: 'Schritt 5 — International', body: 'Paketlinie wählen, Volumen bei Schuhen/Mänteln/Tech bedenken.' },
+  ],
+  faqTitle: 'FAQ',
+  faqs: [
+    { q: 'Was meint Oopbuy Spreadsheet?', aHtml: `Ein <strong>Link-Verzeichnis</strong> für schnellere Discovery. Live-Browse: <a href="{ml}" target="_blank" rel="noopener noreferrer">Katalog</a>, Kauf: <a href="{oopbuyUrl}" target="_blank" rel="noopener noreferrer">Oopbuy</a>.` },
+    { q: 'Für Anfänger?', aHtml: `Ja — mit <a href="{howToUrl}">So kaufen</a> und <a href="{newsUrl}">News</a>.` },
+    { q: 'Welche Produkttypen?', aHtml: `Sneaker, Streetwear, Taschen, Jersey, Beauty, Elektronik — je nach Seller-Rotation.` },
+    { q: 'Ersetzt Listing-QC die Lager-QC?', aHtml: `Nein — Lagerfotos im Account zählen.` },
+    { q: 'Warum nicht nur Marktplatzsuche?', aHtml: `Community-Einstiege sparen Zeit bei toten Links oder unklaren Batches.` },
+    { q: 'Wie oft Updates?', aHtml: `Häufig — 404 heißt oft: Seller hat rotiert; nächste Zeile wählen.` },
+  ],
+  bottomCtaTitle: 'Spreadsheet erkunden',
+  bottomCtaIntroHtml: `Jetzt <strong><a href="{ml}" target="_blank" rel="noopener noreferrer">vollständigen Browse</a></strong> öffnen, <a href="{howToUrl}">So kaufen</a> parallel halten, <a href="{newsUrl}">News</a> für Amtsinfos. Zeilenpreise ≠ Landed Cost.`,
+  bulletsTitle: 'Kurz vor dem Klick',
+  bullets: [
+    'Nur redaktionell — kein Warenkorb.',
+    'Volle Listing-URL, nicht nur Shop-Start.',
+    'Listing-QC ≠ Lager-QC.',
+    'Landed Cost = Service, Volumen, Zoll mitdenken.',
+  ],
+  ctaLabel: 'Vollständiges Spreadsheet →',
+  howToBuyLabel: 'Workflow → So kaufen',
+  newsLinkLabel: 'News & Guides →',
+};

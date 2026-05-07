@@ -1,0 +1,30 @@
+---
+import { ml } from '../consts';
+
+interface Props {
+  disclaimerTitle?: string;
+  /** Raw HTML for the disclaimer body (trusted, from i18n bundles). */
+  disclaimerHtml?: string;
+  copyrightLine?: string;
+}
+
+const {
+  disclaimerTitle = 'Disclaimer:',
+  disclaimerHtml,
+  copyrightLine = '© 2026 oopbuyai.com · Link hub with buying notes—shopping and payments happen elsewhere.',
+} = Astro.props;
+
+const defaultDisclaimerHtml = `Oopbuyai.com is an independent bookmark-style hub for <strong>Oopbuy spreadsheet</strong> discovery—not a storefront. Links to the <a href="${ml}" target="_blank" rel="noopener noreferrer">Oopbuy Spreadsheet catalogue</a>, marketplaces, and <a href="https://oopbuy.com/" target="_blank" rel="noopener noreferrer">oopbuy.com</a> are third parties; this domain does not process payments or storage. Verify QC photos and listing details yourself. Not affiliated with Oopbuy or those third-party hosts—read each platform’s official terms.`;
+---
+
+<footer>
+  <div class="wrap">
+    <div class="page-mast">
+      <p>
+        <strong>{disclaimerTitle}</strong>{' '}
+        <span set:html={disclaimerHtml ?? defaultDisclaimerHtml} />
+      </p>
+      <p style="margin-top:1rem;">{copyrightLine}</p>
+    </div>
+  </div>
+</footer>

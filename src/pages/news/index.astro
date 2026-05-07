@@ -1,0 +1,64 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NewsPageBody from '../../components/pages/NewsPageBody.astro';
+import { ml, siteStructuredDataIds } from '../../consts';
+import officialOopbuyNoticeExcerpts from '../../data/officialOopbuyNoticeExcerpts.json';
+import homeCategoryBanners from '../../data/homeCategoryBanners.json';
+import { getNewsCopy, hydrateNewsCopy, newsHowToJsonLd } from '../../i18n/copy/newsPage';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { HTML_LANG_BY_ROUTE } from '../../i18n/config';
+
+export const prerender = true;
+
+const locale = 'en';
+const canonicalPath = '/news';
+
+const raw = getNewsCopy(locale);
+const copy = hydrateNewsCopy(raw, {
+  guideUrl: `${ml}/guide`,
+  buyerUrl: getRelativeLocaleUrl(locale, 'buyer-shares'),
+  howToUrl: getRelativeLocaleUrl(locale, 'how-to-buy'),
+  oopbuyHomeUrl: 'https://oopbuy.com/',
+  homeCuratedUrl: `${getRelativeLocaleUrl(locale, '')}#curated-directory`,
+  mlCatalogUrl: ml,
+  excerptCount: officialOopbuyNoticeExcerpts.length,
+});
+
+const homeHref = getRelativeLocaleUrl(locale, '');
+
+const origin = Astro.site?.origin ?? 'https://oopbuyai.com';
+const { websiteId } = siteStructuredDataIds(origin);
+const pageUrl = new URL(canonicalPath, Astro.site).href;
+const inLang = HTML_LANG_BY_ROUTE[locale];
+
+const webPageLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${pageUrl}#webpage`,
+  name: copy.title,
+  url: pageUrl,
+  description: copy.description,
+  inLanguage: inLang,
+  isPartOf: { '@id': websiteId },
+};
+
+const howToLd = newsHowToJsonLd(copy, inLang);
+---
+
+<Layout
+  title={copy.title}
+  description={copy.description}
+  keywords={copy.keywords}
+  canonicalPath={canonicalPath}
+  locale={locale}
+  i18nRouteSegment="news"
+  jsonLd={[webPageLd, howToLd]}
+>
+  <NewsPageBody
+    locale={locale}
+    copy={copy}
+    homeHref={homeHref}
+    banners={homeCategoryBanners}
+    excerpts={officialOopbuyNoticeExcerpts}
+  />
+</Layout>

@@ -1,0 +1,71 @@
+import type { SpreadsheetPageCopy } from '../spreadsheetCopy.types';
+
+export const fr: SpreadsheetPageCopy = {
+  title: 'Oopbuy Spreadsheet — liens et catégories | oopbuyai.com',
+  description:
+    'Hub éditorial : catalogue façon spreadsheet, références QC, FAQ et boucle lien → Oopbuy.',
+  keywords: 'Oopbuy Spreadsheet, Weidian, agent Taobao, QC',
+  backHomeLabel: '← Retour à l’accueil',
+  h1: 'Oopbuy Spreadsheet',
+  h2Hero: 'Milliers de liens organisés pour accélérer la découverte.',
+  subhead:
+    'Parcourt baskets, vestes, t-shirts, sweats, sacs et high-tech — puis colle une URL stable vers Oopbuy.',
+  introHtml: `oopbuyai.com <strong>n’est pas une boutique</strong> : nous expliquons le jargon « spreadsheet » et renvoyons vers le <strong><a href="{ml}" target="_blank" rel="noopener noreferrer">catalogue</a></strong>. Paiement & QC entrepôt sur <strong><a href="{oopbuyUrl}" target="_blank" rel="noopener noreferrer">Oopbuy</a></strong>. <a href="{newsUrl}">Actualités</a> · <a href="{howToUrl}">Comment acheter</a>.`,
+  heroTags: ['10k+ liens', 'QC si annoncé', 'Mises à jour', 'Raccourcis', 'Débutants', 'Checkout Oopbuy'],
+  whatIsTitle: 'Qu’est-ce que le spreadsheet Oopbuy ?',
+  whatIsBodyHtml: `Table partagée d’entrées marché CN. Le <strong><a href="{ml}" target="_blank" rel="noopener noreferrer">parcours catalogue</a></strong> regroupe vos catégories pour copier l’URL produit.<br/><br/>Un QC liste est indicatif ; seul le dossier QC entrepôt <strong><a href="{oopbuyUrl}" target="_blank" rel="noopener noreferrer">Oopbuy</a></strong> fait foi.`,
+  learnMoreLabel: 'En savoir plus →',
+  previewTitle: 'Exemples de pièces recherchées',
+  previewIntroHtml: `Grille illustrative — lignes vivantes dans le <strong><a href="{ml}" target="_blank" rel="noopener noreferrer">browse</a></strong>; prix ligne ≠ fret final.`,
+  previewFiltersLabel: 'Filtres fréquents :',
+  previewCards: [
+    { title: 'Sneakers rétro', category: 'Chaussures', priceHint: 'Dès ~32 $', tagsLine: 'QC si dispo · pick populaire' },
+    { title: 'T-shirt lavé oversized', category: 'T-shirts', priceHint: 'Dès ~14 $', tagsLine: 'Streetwear · budget' },
+    { title: 'Sweat zippé', category: 'Sweats', priceHint: 'Dès ~28 $', tagsLine: 'Comfort · best-seller' },
+    { title: 'Sac bandoulière utilitaire', category: 'Sacs', priceHint: 'Dès ~21 $', tagsLine: 'Quotidien · design épuré' },
+    { title: 'Maillot mesh sport', category: 'Jersey', priceHint: 'Dès ~19 $', tagsLine: 'Léger · batch variable' },
+    { title: 'Écouteurs sans fil gamer', category: 'Électronique', priceHint: 'Dès ~26 $', tagsLine: 'Tech · vérif reviews' },
+  ],
+  whyTitle: 'Pourquoi passer par ce type de tableau ?',
+  whyItems: [
+    { title: 'Liens triés', body: 'Moins de recherches aléatoires.' },
+    { title: 'Repères QC', body: 'Jamais un substitut à l’entrepôt.' },
+    { title: 'Navigation par familles', body: 'Chaussures, textile, sacs, tech.' },
+    { title: 'Découverte rapide', body: 'Copier-coller vers l’agent.' },
+    { title: 'Comparer les silhouettes', body: 'Plusieurs styles d’un coup.' },
+    { title: 'Accès débutants', body: 'Texte + guide pas-à-pas.' },
+  ],
+  howTitle: 'Comment utiliser le spreadsheet',
+  howSteps: [
+    { title: 'Étape 1 — choisir une catégorie', body: 'Baskets, sweats, sacs ou recherche catalogue.' },
+    { title: 'Étape 2 — ouvrir une fiche sérieuse', body: 'Grilles taille + notes + QC encore ; URL complète.' },
+    { title: 'Étape 3 — Oopbuy', body: 'Soumettre, payer domestique et attendre l’entrée.', },
+    { title: 'Étape 4 — QC réel entrepôt', body: 'Valider ou échanger sur photos Oopbuy.' },
+    { title: 'Étape 5 — expédier', body: 'Ligne fret + volumétrie sneakers/manteaux/tech.', },
+  ],
+  faqTitle: 'FAQ',
+  faqs: [
+    { q: 'Ça remplace la boutique ?', aHtml: `Non — découverte ici (<a href="{ml}" target="_blank" rel="noopener noreferrer">catalogue</a>), achat sur <a href="{oopbuyUrl}" target="_blank" rel="noopener noreferrer">Oopbuy</a>.` },
+    { q: 'Débutants ?', aHtml: `<a href="{howToUrl}">Guide</a> + <a href="{newsUrl}">Actualités</a>.` },
+    { q: 'Contenus typiques ?', aHtml: `Sneakers, streetwear, sacs, beauté, high-tech.` },
+    {
+      q: 'Le QC annonce suffit-il ?',
+      aHtml: `Non — seules les photos entrepôt Oopbuy comptent pour valider.`,
+    },
+    {
+      q: 'Pourquoi ne pas chercher seulement sur le marketplace ?',
+      aHtml: `Les feuilles compressent des liens issus de la communauté et font gagner du temps.`,
+    },
+    {
+      q: 'Fréquence des mises à jour ?',
+      aHtml: `Souvent ; un lien 404 signifie souvent qu’un vendeur a retiré la fiche.`,
+    },
+  ],
+  bottomCtaTitle: 'Explorer le spreadsheet',
+  bottomCtaIntroHtml: `<strong><a href="{ml}" target="_blank" rel="noopener noreferrer">Parcourir</a></strong> avec <a href="{howToUrl}">guide</a> & <a href="{newsUrl}">news</a>.`,
+  bulletsTitle: 'Rappels',
+  bullets: ['Site info.', 'URL listing complète.', 'QC annonce ≠ QC entrepôt.', 'Coût final ≠ prix ligne.',],
+  ctaLabel: 'Ouvrir le spreadsheet →',
+  howToBuyLabel: 'Workflow → Comment acheter',
+  newsLinkLabel: 'Actualités & guides →',
+};

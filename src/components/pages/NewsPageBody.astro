@@ -1,0 +1,390 @@
+---
+import SiteHeader from '../SiteHeader.astro';
+import SiteFooter from '../SiteFooter.astro';
+import HomeCategoryBanners from '../HomeCategoryBanners.astro';
+import type { NewsCopy } from '../../i18n/copy/newsPage';
+import type { HomeCategoryBanner } from '../HomeCategoryBanners.astro';
+
+interface Excerpt {
+  title: string;
+  sourceUrl: string;
+  bodyHtml: string;
+}
+
+interface Props {
+  locale: string;
+  copy: NewsCopy;
+  homeHref: string;
+  banners: HomeCategoryBanner[];
+  excerpts: Excerpt[];
+}
+
+const OOPBUY_ISSUE_HUB = 'https://oopbuy.com/issueView';
+
+const { locale, copy, homeHref, banners, excerpts } = Astro.props;
+---
+
+<SiteHeader locale={locale} />
+
+<main>
+  <section class="band-alt">
+    <div class="wrap">
+      <div class="page-mast">
+        <p class="news-back-link">
+          <a href={homeHref}>{copy.backHomeLabel}</a>
+        </p>
+        <h1 class="simple-page-title" id="news-heading">{copy.h1}</h1>
+        <p class="section-intro news-intro" set:html={copy.topIntroHtml} />
+
+        <h2 class="h2-sub" id="home-banners-repeat">{copy.featuredBannerHeading}</h2>
+        <p class="section-intro news-banners-intro" set:html={copy.featuredBannerIntroHtml} />
+
+        <HomeCategoryBanners banners={banners} />
+
+        <section class="news-activity-explainer" aria-labelledby="activity-explainer-heading">
+          <h2 class="h2-sub activity-explainer-title" id="activity-explainer-heading">
+            {copy.activityHeading}
+          </h2>
+          <p class="section-intro activity-explainer-intro" set:html={copy.activityIntroHtml} />
+          <ol class="activity-explainer-list">
+            {
+              copy.activityItems.map((item) => (
+                <li class="activity-explainer-item">
+                  <strong>{item.title}</strong>
+                  <span
+                    class:list={[
+                      'activity-explainer-pill',
+                      item.pillVariant === 'internal'
+                        ? 'activity-explainer-pill--internal'
+                        : 'activity-explainer-pill--external',
+                    ]}
+                  >
+                    {item.pillText}
+                  </span>
+                  <div set:html={item.bodyHtml} />
+                  <div set:html={item.moreHtml} />
+                </li>
+              ))
+            }
+          </ol>
+        </section>
+
+        <article class="official-sample" aria-labelledby="official-sample-heading">
+          <div class="official-sample-head">
+            <span class="official-sample-badge" id="official-sample-heading">{copy.official.badge}</span>
+            <a
+              class="official-sample-link"
+              href={OOPBUY_ISSUE_HUB}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {copy.official.faqHubLabel}
+            </a>
+          </div>
+          <p class="official-sample-meta" set:html={copy.official.metaHtml} />
+
+          <div class="official-faq-stack" lang="zh-Hans">
+            {
+              excerpts.map((excerpt) => (
+                <details class="official-faq-item">
+                  <summary class="official-faq-summary">{excerpt.title}</summary>
+                  <div class="official-faq-body">
+                    <p class="official-faq-source">
+                      <a href={excerpt.sourceUrl} target="_blank" rel="noopener noreferrer">
+                        {copy.official.sourcePageLabel}
+                      </a>
+                    </p>
+                    <div class="official-faq-html" set:html={excerpt.bodyHtml} />
+                  </div>
+                </details>
+              ))
+            }
+          </div>
+        </article>
+
+        <h2 class="h2-sub">{copy.stepsHeading}</h2>
+        <ol class="how-steps">
+          {copy.stepListItemsHtml.map((html) => <li set:html={html} />)}
+        </ol>
+
+        <h2 class="h2-sub">{copy.tipsHeading}</h2>
+        <ul class="how-tips">
+          {copy.tipListItemsHtml.map((html) => <li set:html={html} />)}
+        </ul>
+
+        <p class="section-intro news-disclaimer" set:html={copy.disclaimerHtml} />
+      </div>
+    </div>
+  </section>
+</main>
+
+<SiteFooter />
+
+<style>
+  .news-back-link {
+    margin: 0 0 0.5rem;
+    font-size: 0.875rem;
+  }
+  .news-intro {
+    margin-top: 0;
+  }
+  .news-disclaimer {
+    margin-bottom: 0;
+  }
+  .h2-sub {
+    margin: 2rem 0 0.75rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  #home-banners-repeat.h2-sub {
+    margin-top: 1.25rem;
+  }
+
+  .news-banners-intro {
+    margin-top: 0 !important;
+    margin-bottom: 1rem;
+    max-width: 72rem;
+  }
+
+  .news-activity-explainer {
+    margin: 1.75rem 0 2.25rem;
+    padding: 1.25rem 1.25rem 1.5rem;
+    max-width: 52rem;
+    min-width: 0;
+    border: 1px solid var(--border);
+    border-radius: 0.65rem;
+    background: var(--surface);
+  }
+  .activity-explainer-title {
+    margin-top: 0;
+  }
+  .activity-explainer-intro {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: none;
+  }
+  .activity-explainer-list {
+    margin: 0;
+    padding-left: 1.25rem;
+    list-style: decimal;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .activity-explainer-item {
+    margin-bottom: 1.35rem;
+    padding-left: 0.25rem;
+  }
+  .activity-explainer-item:last-child {
+    margin-bottom: 0;
+  }
+  .activity-explainer-item strong {
+    display: inline;
+    color: var(--text);
+    font-size: 0.95rem;
+  }
+  .activity-explainer-item p {
+    margin: 0.45rem 0 0;
+    font-size: 0.9rem;
+    max-width: none;
+  }
+  .activity-explainer-pill {
+    display: inline-block;
+    margin-left: 0.4rem;
+    padding: 0.15rem 0.5rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    vertical-align: middle;
+    border-radius: 999px;
+  }
+  .activity-explainer-pill--internal {
+    color: var(--accent-dark);
+    background: var(--accent-badge-bg, rgba(13, 148, 136, 0.14));
+  }
+  .activity-explainer-pill--external {
+    color: #78350f;
+    background: #ffedd5;
+  }
+  .activity-explainer-more {
+    margin-top: 0.4rem !important;
+    font-size: 0.84rem !important;
+  }
+  .activity-explainer-more a {
+    font-weight: 600;
+  }
+
+  .how-steps {
+    margin: 0 0 1.5rem;
+    padding-left: 1.35rem;
+    max-width: 52rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+  .how-steps li {
+    margin-bottom: 0.85rem;
+  }
+  .how-steps strong {
+    color: var(--text);
+  }
+  .how-tips {
+    margin: 0 0 1rem;
+    padding-left: 1.35rem;
+    max-width: 52rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+  .how-tips li {
+    margin-bottom: 0.55rem;
+  }
+
+  .official-sample {
+    margin: 2rem 0;
+    padding: 1.35rem 1.25rem 1.5rem;
+    max-width: 52rem;
+    min-width: 0;
+    background: linear-gradient(180deg, var(--hero-surface-2, #f9f9fc) 0%, var(--surface) 100%);
+    border: 1px solid var(--border);
+    border-radius: 0.65rem;
+    border-left: 4px solid var(--accent);
+    text-align: left;
+  }
+  .official-sample-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.65rem;
+    margin-bottom: 0.65rem;
+  }
+  .official-sample-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent-dark);
+    background: var(--accent-badge-bg);
+    padding: 0.3rem 0.65rem;
+    border-radius: 999px;
+  }
+  .official-sample-link {
+    font-size: 0.8125rem;
+    font-weight: 600;
+  }
+  .official-sample-meta {
+    margin: 0 0 1rem;
+    font-size: 0.8125rem;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+  .official-faq-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 0;
+  }
+  .official-faq-item {
+    margin: 0;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    background: #fff;
+    min-width: 0;
+    overflow-x: auto;
+  }
+  .official-faq-item[open] {
+    box-shadow: 0 1px 0 rgba(15, 23, 42, 0.06);
+  }
+  .official-faq-summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 0.85rem 2.25rem 0.85rem 1rem;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.45;
+    position: relative;
+    user-select: none;
+  }
+  .official-faq-summary::-webkit-details-marker {
+    display: none;
+  }
+  .official-faq-summary::after {
+    content: '';
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-right: 2px solid var(--muted);
+    border-bottom: 2px solid var(--muted);
+    transform: translateY(-65%) rotate(45deg);
+    transition: transform 0.18s ease;
+    opacity: 0.75;
+  }
+  .official-faq-item[open] .official-faq-summary::after {
+    transform: translateY(-25%) rotate(-135deg);
+  }
+  .official-faq-summary:hover {
+    background: rgba(13, 148, 136, 0.06);
+  }
+  .official-faq-body {
+    padding: 0 1rem 1rem;
+    border-top: 1px solid var(--border);
+    background: #fafafa;
+    min-width: 0;
+  }
+  .official-faq-source {
+    margin: 0.75rem 0 0.35rem;
+    font-size: 0.8125rem;
+  }
+  .official-faq-source a {
+    font-weight: 600;
+  }
+  .official-faq-html {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--muted);
+    min-width: 0;
+  }
+  .official-faq-html :where(p, ul, ol) {
+    margin: 0 0 0.55rem;
+  }
+  .official-faq-html :where(ul, ol) {
+    padding-left: 1.35rem;
+  }
+  .official-faq-html :where(li) {
+    margin-bottom: 0.35rem;
+  }
+  .official-faq-html :where(strong, b) {
+    color: var(--text);
+  }
+  .official-faq-html .help-table-class {
+    overflow-x: auto;
+    margin: 0.5rem 0 0.75rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  .official-faq-html :where(table) {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+  .official-faq-html :where(th, td) {
+    border: 1px solid var(--border);
+    padding: 0.4rem 0.5rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  .official-faq-html .ace-line {
+    margin: 0 0 0.45rem;
+  }
+  .official-faq-html img {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    display: block;
+  }
+</style>

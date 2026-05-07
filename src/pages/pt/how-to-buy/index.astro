@@ -1,0 +1,50 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import HowToBuyPageBody from '../../../components/pages/HowToBuyPageBody.astro';
+import { ml, siteStructuredDataIds } from '../../../consts';
+import howToBuyDesktopNewsExcerpts from '../../../data/howToBuyDesktopNewsExcerpts.json';
+import { getHowToBuyCopy, hydrateHowToBuyCopy } from '../../../i18n/copy/howToBuy';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { HTML_LANG_BY_ROUTE } from '../../../i18n/config';
+
+export const prerender = true;
+
+const locale = 'pt';
+const canonicalPath = '/pt/how-to-buy';
+const raw = getHowToBuyCopy(locale);
+const copy = hydrateHowToBuyCopy(raw, ml, howToBuyDesktopNewsExcerpts.length);
+const homeHref = getRelativeLocaleUrl(locale, '');
+
+const origin = Astro.site?.origin ?? 'https://oopbuyai.com';
+const { websiteId } = siteStructuredDataIds(origin);
+const pageUrl = new URL(canonicalPath, Astro.site).href;
+
+const webPageLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${pageUrl}#webpage`,
+  name: copy.title,
+  url: pageUrl,
+  description: copy.description,
+  inLanguage: HTML_LANG_BY_ROUTE[locale],
+  isPartOf: { '@id': websiteId },
+  keywords: copy.keywords,
+};
+---
+
+<Layout
+  title={copy.title}
+  description={copy.description}
+  keywords={copy.keywords}
+  canonicalPath={canonicalPath}
+  locale={locale}
+  i18nRouteSegment="how-to-buy"
+  jsonLd={webPageLd}
+>
+  <HowToBuyPageBody
+    locale={locale}
+    copy={copy}
+    homeHref={homeHref}
+    excerpts={howToBuyDesktopNewsExcerpts}
+  />
+</Layout>

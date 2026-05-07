@@ -1,0 +1,74 @@
+---
+import {
+  oopbuyTopBannerImageUrl,
+  oopbuyTopBannerInnerMaxPx,
+} from '../consts';
+
+/**
+ * Mirrors Oopbuy prod: `.notice-strip` image from libcdn TOP/WEB banner, black full-bleed rail, centered block.
+ * CTA `/join/discord` keeps same-origin href; server-side invite URL comes from `defaultOopbuyDiscordUrl`.
+ */
+const promoHref = '/join/discord';
+/** CDN asset intrinsic size (11520×510). */
+const imgW = 11520;
+const imgH = 510;
+---
+
+<div class="site-top-promo-shell">
+  <a
+    class="site-top-promo"
+    href={promoHref}
+    target="_self"
+    rel="noopener"
+    aria-label="Oopbuy promotion — join Discord (opens invite via site redirect)"
+    style={`max-width: min(100%, ${oopbuyTopBannerInnerMaxPx}px);`}
+  >
+    <img
+      class="site-top-promo__img notice-strip"
+      src={oopbuyTopBannerImageUrl}
+      alt="Oopbuy limited-time top banner promotion — rewards, Discord invite strip from oopbuy.com CDNs for Oopbuy Spreadsheet hub visitors"
+      width={imgW}
+      height={imgH}
+      decoding="async"
+      fetchpriority="high"
+      referrerpolicy="no-referrer"
+    />
+  </a>
+</div>
+
+<style is:global>
+  .site-top-promo-shell {
+    box-sizing: border-box;
+    position: relative;
+    z-index: 120;
+    width: 100%;
+    margin: 0;
+    padding: max(env(safe-area-inset-top, 0px), 0px) 0 0;
+    background: #000;
+    line-height: 0;
+  }
+
+  .site-top-promo {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    line-height: 0;
+    text-decoration: none;
+    outline-offset: 2px;
+  }
+
+  .site-top-promo:focus-visible {
+    outline: 2px solid #a8bfff;
+  }
+
+  .notice-strip.site-top-promo__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    vertical-align: top;
+    object-fit: contain;
+    object-position: center top;
+  }
+</style>

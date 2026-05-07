@@ -1,0 +1,38 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import LocaleHomeStub from '../../components/LocaleHomeStub.astro';
+import { frHome } from '../../i18n/stubs/fr';
+import { ml, siteStructuredDataIds } from '../../consts';
+
+export const prerender = true;
+
+const locale = 'fr';
+const canonicalPath = '/fr/';
+const origin = Astro.site?.origin ?? 'https://oopbuyai.com';
+const { websiteId } = siteStructuredDataIds(origin);
+const pageUrl = new URL(canonicalPath, Astro.site).href;
+
+const webPageLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${pageUrl}#webpage`,
+  name: frHome.webPageName,
+  url: pageUrl,
+  description: frHome.description,
+  inLanguage: 'fr',
+  isPartOf: { '@id': websiteId },
+  keywords: frHome.webPageKeywords,
+};
+---
+
+<Layout
+  locale={locale}
+  title={frHome.title}
+  description={frHome.description}
+  keywords={frHome.keywords}
+  canonicalPath={canonicalPath}
+  i18nRouteSegment=""
+  jsonLd={webPageLd}
+>
+  <LocaleHomeStub content={frHome} />
+</Layout>

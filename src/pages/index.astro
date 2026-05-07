@@ -1,0 +1,459 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import MaisonLooksSearchBar from '../components/MaisonLooksSearchBar.astro';
+import HomeCategoryBanners from '../components/HomeCategoryBanners.astro';
+import homeCategoryBanners from '../data/homeCategoryBanners.json';
+import { ml, siteStructuredDataIds } from '../consts';
+
+const origin = Astro.site?.origin ?? 'https://oopbuyai.com';
+const { websiteId } = siteStructuredDataIds(origin);
+const title =
+  'Oopbuy Spreadsheet Hub 2026 — Weidian, Taobao & 1688 Finds + QC Guide | oopbuyai.com';
+const description =
+  'Independent Oopbuy Spreadsheet hub (2026): curated Weidian / Taobao / 1688-style catalogue shortcuts, paste-link-to-Oopbuy workflow, warehouse QC, shipping math, and a full on-page shopping guide—not checkout.';
+const keywords =
+  'Oopbuy spreadsheet, Oopbuy spreadsheet 2026, Oopbuy spreadsheet hub, Weidian spreadsheet Oopbuy, Taobao agent spreadsheet, 1688 spreadsheet finds, shopping agent spreadsheet, Oopbuy paste link workflow, FashionReps Oopbuy spreadsheet, Oopbuy spreadsheet QC, Oopbuy spreadsheet guide';
+
+const categoryPills = [
+  /* Row 1 */
+  {
+    id: 'shoes',
+    label: 'Shoes',
+    href: `${ml}/c/shoes`,
+    icon: '/category-icons/cat-shoes.png',
+    imgAlt:
+      'Oopbuy Spreadsheet shoes — Weidian, Taobao & 1688 sneaker finds with QC where listings show it',
+  },
+  {
+    id: 't-shirts',
+    label: 'T-Shirts',
+    href: `${ml}/search?q=${encodeURIComponent('t-shirt')}`,
+    icon: '/category-icons/cat-t-shirts.png',
+    imgAlt: 'Oopbuy Spreadsheet T-shirts — verified tees, streetwear tops & graphic shirt links',
+  },
+  {
+    id: 'pants',
+    label: 'Pants/Shorts',
+    href: `${ml}/search?q=${encodeURIComponent('pants shorts')}`,
+    icon: '/category-icons/cat-pants.png',
+    imgAlt: 'Oopbuy Spreadsheet pants & shorts — bottoms, joggers & summer short finds',
+  },
+  {
+    id: 'accessories',
+    label: 'Accessories',
+    href: `${ml}/c/accessories`,
+    icon: '/category-icons/cat-accessories.png',
+    imgAlt: 'Oopbuy Spreadsheet accessories — belts, jewellery & small add-ons from curated links',
+  },
+  {
+    id: 'bags',
+    label: 'Bags',
+    href: `${ml}/search?q=${encodeURIComponent('bag backpack')}`,
+    icon: '/category-icons/cat-bags.png',
+    imgAlt: 'Oopbuy Spreadsheet bags — backpacks, totes & shoulder bags via agent shopping links',
+  },
+  {
+    id: 'electronics',
+    label: 'Electronics',
+    href: `${ml}/c/electronics`,
+    icon: '/category-icons/cat-electronics.png',
+    imgAlt: 'Oopbuy Spreadsheet electronics — headphones, gadgets & tech picks with USD-style pricing context',
+  },
+  /* Row 2 */
+  {
+    id: 'jackets',
+    label: 'Jackets',
+    href: `${ml}/search?q=${encodeURIComponent('jacket')}`,
+    icon: '/category-icons/cat-jackets.png',
+    imgAlt: 'Oopbuy Spreadsheet jackets — outerwear, bombers & seasonal coats from marketplace listings',
+  },
+  {
+    id: 'hoodies',
+    label: 'Hoodies/Sweaters',
+    href: `${ml}/search?q=hoodie`,
+    icon: '/category-icons/cat-hoodies.png',
+    imgAlt: 'Oopbuy Spreadsheet hoodies & sweaters — crewnecks, pullovers & knit layers',
+  },
+  {
+    id: 'headwear',
+    label: 'Headwear',
+    href: `${ml}/search?q=${encodeURIComponent('cap hat')}`,
+    icon: '/category-icons/cat-headwear.png',
+    imgAlt: 'Oopbuy Spreadsheet headwear — caps, beanies & hats for streetwear agent buyers',
+  },
+  {
+    id: 'jersey',
+    label: 'Jersey',
+    href: `${ml}/search?q=jersey`,
+    icon: '/category-icons/cat-jersey.png',
+    imgAlt: 'Oopbuy Spreadsheet jerseys & tanks — basketball-style and sleeveless sport finds',
+  },
+  {
+    id: 'perfume',
+    label: 'Perfume',
+    href: `${ml}/c/beauty`,
+    icon: '/category-icons/cat-perfume.png',
+    imgAlt: 'Oopbuy Spreadsheet fragrance & beauty — perfume picks from the linked catalogue browse',
+  },
+  {
+    id: 'other',
+    label: 'Other stuff',
+    href: `${ml}/products`,
+    icon: '/category-icons/cat-other.png',
+    imgAlt: 'Oopbuy Spreadsheet browse all — more categories and mixed Weidian / Taobao finds',
+  },
+] as const;
+
+/** Reddit Snoo (@see public/reddit-snoo.png), below category pills */
+const categoryBelowIconSrc = '/reddit-snoo.png';
+const categoryBelowIconHref = 'https://www.reddit.com/r/FashionReps/';
+
+/** Oopbuy 官网首页 hero 飞机插画（与离线包 banner-fly.113c0532.png 同源，已放入 public） */
+const oopbuyHeroPlaneSrc = '/oopbuy-style/banner-fly.png';
+
+const webPageLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${origin}/#webpage`,
+  name: 'Oopbuy Spreadsheet 2026 hub (oopbuyai.com)',
+  url: `${origin}/`,
+  description,
+  inLanguage: 'en',
+  isPartOf: { '@id': websiteId },
+  keywords: [
+    'Oopbuy Spreadsheet',
+    'Oopbuy Spreadsheet 2026',
+    'Weidian Oopbuy spreadsheet',
+    'Taobao spreadsheet Oopbuy',
+    'Oopbuy spreadsheet QC',
+    'shopping agent spreadsheet',
+    'paste link Oopbuy',
+  ],
+};
+
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+  canonicalPath="/"
+  locale="en"
+  i18nRouteSegment=""
+  jsonLd={webPageLd}
+>
+  <section id="top" class="hero" aria-label="Intro">
+    <div class="wrap">
+      <div class="hero-mast">
+        <SiteHeader embedded locale="en" />
+        <div class="hero-shell">
+          <div class="hero-layout">
+            <div class="hero-copy">
+              <h1>Oopbuy Spreadsheet 2026 hub</h1>
+              <p class="lead lead-tagline"><strong>The best Oopbuy Spreadsheet</strong></p>
+              <p class="lead-kicker">
+                2026 · 10k+ verified products · best batches · Taobao · Weidian · 1688
+              </p>
+              <p class="lead lead-body">
+                Curated spreadsheet-style catalogue: <strong>10,000+ products</strong>, <strong>QC photos</strong> where listings show them,
+                USD-friendly pricing, and live links across <strong>Taobao, Weidian &amp; 1688</strong>. Track what&apos;s trending, compare batches, then checkout on{' '}
+                <a href="https://oopbuy.com/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-dark); text-decoration: underline"
+                  >Oopbuy</a>{' '}
+                with warehouse QC—built for agents.
+              </p>
+              <MaisonLooksSearchBar mlBase={ml} />
+              <div class="cta-row">
+                <a class="btn btn-primary" href={ml} target="_blank" rel="noopener noreferrer">Browse Oopbuy Spreadsheet →</a>
+                <a
+                  class="btn btn-ghost"
+                  href="https://oopbuy.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Log in on Oopbuy
+                </a>
+              </div>
+            </div>
+            <div class="hero-plane-wrap" aria-hidden="true">
+              <img
+                class="hero-plane-img"
+                src={oopbuyHeroPlaneSrc}
+                alt="Oopbuy-style promotional aircraft illustration — Oopbuy Spreadsheet hub hero decoration"
+                width="970"
+                height="477"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="home-main-centered">
+    <section id="curated-directory" class="band-alt category-explore" aria-labelledby="explore-heading">
+        <div class="wrap">
+          <div class="page-mast">
+          <HomeCategoryBanners banners={homeCategoryBanners} />
+          <h2 id="explore-heading" class="category-explore-title">Explore Oopbuy Spreadsheet Categories</h2>
+          <div class="cat-icon-grid" role="navigation" aria-label="Category shortcuts to MaisonLooks">
+            {
+              categoryPills.map((cat, ci) => (
+                <a
+                  id={cat.id}
+                  class="cat-icon-link"
+                  href={cat.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${cat.label} — opens MaisonLooks in a new tab`}
+                >
+                  <img
+                    class="cat-icon-img"
+                    src={cat.icon}
+                    alt={cat.imgAlt}
+                    width="84"
+                    height="84"
+                    loading={ci < 6 ? 'eager' : 'lazy'}
+                    fetchpriority={ci < 2 ? 'high' : undefined}
+                    decoding="async"
+                  />
+                  <span class="cat-icon-label">{cat.label}</span>
+                </a>
+              ))
+            }
+          </div>
+          <div class="category-below-icon">
+            <a
+              class="category-below-icon-link"
+              href={categoryBelowIconHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="r/FashionReps community on Reddit (opens in new tab)"
+            >
+              <img
+                class="category-below-icon-img"
+                src={categoryBelowIconSrc}
+                width="52"
+                height="52"
+                alt="Reddit Snoo — r/FashionReps community for Oopbuy Spreadsheet hauls & QC discussions"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+          </div>
+          <p class="category-explore-kicker">
+            Browse by category, paste into{' '}
+            <a href="https://oopbuy.com/" target="_blank" rel="noopener noreferrer">Oopbuy</a>
+          </p>
+          <p class="category-explore-intro">
+            Pills shortcut into the{' '}
+            <a href={ml} target="_blank" rel="noopener noreferrer">Oopbuy Spreadsheet</a> (often Taobao / Weidian routes): grab listing URLs,
+            run your usual <strong>Oopbuy</strong> workflow and warehouse QC.
+          </p>
+          <p class="category-explore-sub">
+            Each tap opens the spreadsheet browse in a new tab.
+          </p>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="intro-heading">
+        <div class="wrap">
+          <div class="page-mast">
+          <h2 id="intro-heading">Oopbuy Spreadsheet 2026 — curated links, QC photos, and practical filters</h2>
+          <p class="section-intro">
+            You want stable listing URLs, honest price context, and a clean Oopbuy path to QC. The numbered guide below spells that out.
+          </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="band-alt guide" aria-labelledby="guide-heading" id="oopbuy-spreadsheet-guide">
+        <div class="wrap">
+          <div class="page-mast">
+          <h2 id="guide-heading">Oopbuy spreadsheets: a complete agent shopping guide (2026)</h2>
+          <p class="section-intro">
+            One place for the whole loop—what “Oopbuy spreadsheet” means in Discord slang, how oopbuyai.com fits in (shortcuts
+            only), paste-to-Oopbuy order flow, link hygiene, warehouse QC, landed-price math, and how to sanity-check a row
+            before you pay. Not checkout; policy and final quotes always live in your agent account.
+          </p>
+
+          <h3>1. What counts as an Oopbuy spreadsheet?</h3>
+          <p>
+            In community shorthand, an “Oopbuy spreadsheet” is a curated list—often a Google Sheet or a spreadsheet-style
+            catalogue—that collects marketplace links (Taobao, Weidian, 1688) next to batch notes, size hints, yuan or USD
+            context, and sometimes QC references. Serious curators maintain rows so repeat buyers can paste the same links into
+            the Oopbuy checkout instead of hunting random storefronts by memory.
+          </p>
+          <p>
+            On this site we use the phrase the same way: discover rows via category shortcuts, copy a stable product URL, route it
+            through Oopbuy for payments and warehouse photos, then ship internationally. People also say Weidian spreadsheet or
+            Taobao spreadsheet when they really mean that paste-to-Oopbuy workflow—language drifts, but the mechanics are the
+            same. A row is a bookmark, not a guarantee the listing exists next month: sellers rename SKUs, rotate stock, or pull
+            items when inventory moves.
+          </p>
+
+          <h3>2. Are these spreadsheets “official”—and what is oopbuyai.com?</h3>
+          <p>
+            Usually not in the corporate sense; most lists are community-built. Policies, refunds, seizure risk, customs, and
+            prohibited goods rules still come from your agent and your country. For binding legal wording, prefer official FAQs
+            on oopbuy.com and the marketplaces you buy from.
+          </p>
+          <p>
+            <strong>oopbuyai.com is independent:</strong> we do not process orders, hold funds, issue refunds, or run support for
+            Oopbuy, MaisonLooks, or any seller. Ordering, identity checks, disputes, and shipping approvals happen in your agent
+            dashboard and on third-party platforms. Treat everything here as editorial context—if something in your cart
+            disagrees with a paragraph on this page, trust the wording inside your logged-in account and the live listing you
+            pasted.
+          </p>
+
+          <h3>3. Step-by-step: from spreadsheet row to warehouse QC</h3>
+          <p>
+            Start from a spreadsheet-style browse or the category grid on this hub. Open a real product detail page in the linked
+            catalogue, then copy the <strong>full</strong> listing URL from the address bar—not a trimmed mobile wrapper, not an
+            image-only host link, and not a shop homepage with no variant IDs.
+          </p>
+          <p>
+            In Oopbuy, use whatever “paste link / buy” flow your account shows. Lock every variant (size, colour, length,
+            batch-sensitive options) before you pay, and read service-fee lines in checkout so you are not surprised after the
+            card clears. After domestic shipping to the agent, wait for warehouse arrival: when QC (quality check) photos appear,
+            zoom stitching, colour, logos, and insoles against the listing <em>before</em> you approve international freight—the
+            expensive leg is often volumetric boxes, not the Yuan cell in a spreadsheet.
+          </p>
+
+          <h3>4. Why use Oopbuy (or any agent) instead of wiring cash to a random seller?</h3>
+          <p>
+            Agents bundle basic order visibility, domestic consolidation to a warehouse, and QC photos so you verify the physical
+            item before approving cross-border shipping. That does not remove marketplace or customs risk—it changes who holds
+            your payment rail and how disputes are routed inside a dashboard instead of a one-off chat app with a stranger.
+          </p>
+
+          <h3>5. Finding resilient links for a spreadsheet row</h3>
+          <p>
+            Links rot even when Oopbuy works fine: sellers delist, rename titles for SEO, move the same SKU to a new URL after a
+            ban, or rebuild a Weidian store. Frozen spreadsheets do not self-heal; healthy lists get periodic re-verification,
+            replacements, or “unknown—needs confirmation” notes.
+          </p>
+          <p>
+            Prefer deep item URLs with working variant selectors over shop anchors or mobile stubs that omit SKU text. Note the
+            date you last clicked a row so you know whether an old Discord QC screenshot still matches the same chain of
+            listings—home pages drift faster than stable product pages.
+          </p>
+
+          <h3>6. QC photos: what to verify (and why spreadsheet buyers obsess)</h3>
+          <p>
+            After the domestic leg, the agent photographs what arrived—those warehouse shots are QC. For Oopbuy spreadsheet
+            shoppers, QC is the last chance to catch batch drift, weak stitching, wrong insole branding, or colour shift before
+            you pay international freight. Listing galleries are marketing; QC is lit with whatever warehouse lighting exists,
+            which is why people zoom and compare thread-for-thread.
+          </p>
+          <p>
+            If QC diverges materially from the seller page, use Oopbuy’s in-dashboard dispute or ticket path (per whatever their
+            current UI shows) before you approve outbound shipping. After the parcel leaves the country, fixes get expensive or
+            impossible—spreadsheets rarely warn you about bulb temperature or angle.
+          </p>
+
+          <h3>7. Pricing: a spreadsheet cell is not landed cost</h3>
+          <p>
+            Unless a row explicitly itemizes fees, treat the printed price as item-only. Landed cost for agent workflows typically
+            stacks: item price, domestic postage to warehouse, service lines visible in-cart, optional add-ons (extra photos,
+            measurements), packing volumetric weight, international courier lane, fuel or surcharges, insurance, and currency
+            conversion.
+          </p>
+          <p>
+            When you compare “Vintage batch” vs a new seller row, stress-test volumetric risk—shoes, coats, and hoodies inflate
+            boxes. The same cell can feel cheap on paper yet expensive once measured for outbound. If you ship often, log your own
+            parcel history; that beats trusting rounded Discord numbers.
+          </p>
+
+          <h3>8. Choosing sellers and rows you actually trust</h3>
+          <p>
+            No curated list is guaranteed. Curators can carry stale batch callouts, outdated “GL” comments, or seller drift that
+            outpaced the sheet. Triangulate: open the live listing, skim recent Reddit or Discord photos for that SKU, look for
+            repeat buyers, and sanity-check whether returns are realistic for that store.
+          </p>
+          <p>
+            Use this hub to shorten discovery time, not to skip homework. If a deal sits far under market for the same
+            silhouette, assume listing drift, bait-and-switch risk, or a different material season—paste carefully, QC
+            carefully, and stay inside dispute windows shown in your agent account.
+          </p>
+
+          <h3>9. Common spreadsheet mistakes</h3>
+          <p>
+            Relying on letter sizes without numeric charts; ignoring weight notes for volumetric-heavy pieces; trusting “inspired
+            by” listings as if they were exact multi-SKU matches; approving warehouse photos on a tiny phone screen without
+            zoom; and treating one spreadsheet column as a landed-price quote for your country.
+          </p>
+
+          <h3>10. Keeping a sheet useful all year</h3>
+          <p>
+            Split tabs by category, freeze headers, log batch codes, and schedule link re-checks—especially after a seller
+            refreshes titles or after community “2026” sheet updates. Living spreadsheets beat static screenshots: mark uncertain
+            rows, swap in fresh URLs when you find them, and retire cells that no longer resolve so the next reader does not waste
+            a cart on a ghost link.
+          </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="spreadsheet" class="band-alt" aria-labelledby="cta-heading">
+        <div class="wrap">
+          <div class="page-mast">
+          <h2 id="cta-heading">Oopbuy Spreadsheet directory</h2>
+          <p class="section-intro">
+            Opens the same spreadsheets directory tied to{' '}
+            <a href={`${ml}/spreadsheet`} target="_blank" rel="noopener noreferrer">Oopbuy Spreadsheet → agent spreadsheets</a>{' '}
+            —use <strong>Browse</strong> when you&apos;re discovery-first, then <strong>Log in on Oopbuy</strong> once you paste links.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href={ml} target="_blank" rel="noopener noreferrer">Browse Oopbuy Spreadsheet →</a>
+            <a class="btn btn-ghost" href="https://oopbuy.com/" target="_blank" rel="noopener noreferrer">
+              Log in on Oopbuy
+            </a>
+          </div>
+          <p class="section-intro" style="margin-top:1rem;">
+            Outbound links are third party—verify listings and QC before you ship.
+          </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+  <SiteFooter />
+</Layout>
+
+<style>
+  /* 分类（Explore Categories）及以下 main 内所有文案居中 */
+  .home-main-centered .wrap {
+    text-align: center;
+  }
+  .home-main-centered h2 {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 52rem;
+  }
+  .home-main-centered .section-intro {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .home-main-centered .guide h3 {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 52rem;
+  }
+  .home-main-centered .guide p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .home-main-centered .cta-row {
+    justify-content: center;
+  }
+
+  .home-main-centered .guide h3 + p + p {
+    margin-top: 0.65rem;
+  }
+</style>

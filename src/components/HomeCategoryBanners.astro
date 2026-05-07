@@ -1,0 +1,45 @@
+---
+export interface HomeCategoryBanner {
+  src: string;
+  alt: string;
+  href: string;
+}
+
+interface Props {
+  banners: HomeCategoryBanner[];
+}
+
+const { banners } = Astro.props;
+
+function isOutboundUrl(href: string) {
+  return /^https?:\/\//i.test(href.trim());
+}
+---
+
+<div class="home-category-banners" aria-label="Oopbuy featured banners">
+  {
+    banners.map((banner, bi) => (
+      <a
+        class="home-category-banner-link"
+        href={banner.href}
+        target={isOutboundUrl(banner.href) ? '_blank' : undefined}
+        rel={isOutboundUrl(banner.href) ? 'noopener noreferrer' : undefined}
+        aria-label={
+          isOutboundUrl(banner.href)
+            ? `${banner.alt} · Oopbuy (opens new tab)`
+            : `${banner.alt} · on this site`
+        }
+      >
+        <img
+          class="home-category-banner-img"
+          src={banner.src}
+          alt={banner.alt}
+          loading={bi === 0 ? 'eager' : 'lazy'}
+          fetchpriority={bi === 0 ? 'high' : undefined}
+          decoding="async"
+          referrerpolicy="no-referrer"
+        />
+      </a>
+    ))
+  }
+</div>
