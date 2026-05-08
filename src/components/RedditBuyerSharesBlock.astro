@@ -215,23 +215,18 @@ const t = isShipping
     max-width: none;
   }
 
+  /* One story per row (full-width cards) — easier to scan; order is newest-first from data */
   .reddit-picks-stack {
-    display: grid;
-    /* Two columns when there are ≥2 cards; a lone card spans one full-width column (no empty grid lane). */
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem 1.1rem;
-    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    gap: 1.85rem;
     width: 100%;
-  }
-
-  .reddit-picks-stack:has(> .reddit-pick-card:only-child) {
-    grid-template-columns: minmax(0, 1fr);
   }
 
   /* Phones / very narrow panels */
   @media (max-width: 560px) {
     .reddit-picks-stack {
-      grid-template-columns: minmax(0, 1fr);
+      gap: 1.5rem;
     }
 
     .reddit-picks-stack .reddit-gallery-img {

@@ -17,7 +17,19 @@ interface Props {
 
 const { locale, copy, homeHref, buyerPicks, shippingPicks, galleryI18nJson } =
   Astro.props;
-const hasAnyShare = buyerPicks.length > 0 || shippingPicks.length > 0;
+
+/** Newest-first by `addedAt` (YYYY-MM-DD); missing dates sort last */
+function sharesByAddedAtDesc(items: RedditSharePick[]): RedditSharePick[] {
+  return [...items].sort((a, b) =>
+    (b.addedAt ?? '').localeCompare(a.addedAt ?? ''),
+  );
+}
+
+const buyerPicksSorted = sharesByAddedAtDesc(buyerPicks);
+const shippingPicksSorted = sharesByAddedAtDesc(shippingPicks);
+
+const hasAnyShare =
+  buyerPicksSorted.length > 0 || shippingPicksSorted.length > 0;
 ---
 
 <SiteHeader locale={locale} />
@@ -39,9 +51,11 @@ const hasAnyShare = buyerPicks.length > 0 || shippingPicks.length > 0;
             <RedditBuyerSharesBlock picks={[]} showEmptyMessage />
           ) : (
             <div class="buyer-shares-blocks">
-              {buyerPicks.length > 0 ? <RedditBuyerSharesBlock picks={buyerPicks} /> : null}
-              {shippingPicks.length > 0 ? (
-                <RedditBuyerSharesBlock picks={shippingPicks} variant="shipping" />
+              {buyerPicksSorted.length > 0 ? (
+                <RedditBuyerSharesBlock picks={buyerPicksSorted} />
+              ) : null}
+              {shippingPicksSorted.length > 0 ? (
+                <RedditBuyerSharesBlock picks={shippingPicksSorted} variant="shipping" />
               ) : null}
             </div>
           )
@@ -140,16 +154,10 @@ const hasAnyShare = buyerPicks.length > 0 || shippingPicks.length > 0;
   }
 
   .buyer-shares-blocks {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
     align-items: stretch;
     width: 100%;
-  }
-
-  @media (min-width: 640px) {
-    .buyer-shares-blocks:has(> .reddit-picks:nth-of-type(2)) {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
   }
 </style>
