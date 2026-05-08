@@ -23,8 +23,9 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
-  // Dev: default 4321; if the port is busy Astro picks the next free one — always use the "Local" URL from the terminal.
-  // Preview (static dist): separate port 4173 so it does not fight with `npm run dev` on 4321.
+  // Dev: `npm run dev` uses this port; if busy Astro tries the next free port (see terminal).
+  // Preview: `npm run preview` passes `--port 4173` in package.json so it does not collide with dev on 4321.
+  // (Astro’s static preview server reads `server.*` for host/headers; a top-level `preview` key is not applied.)
   // Do not open dist/*.html via file:// — run `npm run build && npm run preview`.
   server: {
     port: 4321,
@@ -32,8 +33,5 @@ export default defineConfig({
     headers: {
       'Cache-Control': 'no-store',
     },
-  },
-  preview: {
-    port: 4173,
   },
 });
