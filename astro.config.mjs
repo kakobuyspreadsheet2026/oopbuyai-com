@@ -12,6 +12,7 @@ export default defineConfig({
       customPages: [
         new URL('/news/oopbuy-activity/', site).href,
         new URL('/news/openstar-recruit/', site).href,
+        new URL('/news/rumor-patrol/', site).href,
       ],
     }),
   ],
@@ -23,12 +24,10 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
-  // Dev: `npm run dev` uses this port; if busy Astro tries the next free port (see terminal).
-  // Preview: `npm run preview` passes `--port 4173` in package.json so it does not collide with dev on 4321.
-  // (Astro’s static preview server reads `server.*` for host/headers; a top-level `preview` key is not applied.)
-  // Do not open dist/*.html via file:// — run `npm run build && npm run preview`.
+  // Dev: keep **4322** here so `kakobuy-cn-com` can own **4321** without Astro silently hopping ports (easy to confuse the two hubs).
+  // Preview: `npm run preview` passes `--port 4173` in package.json.
   server: {
-    port: 4321,
+    port: 4322,
     open: true,
     headers: {
       'Cache-Control': 'no-store',
