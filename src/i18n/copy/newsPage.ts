@@ -1,6 +1,6 @@
 import type { RouteLocale } from '../config';
 
-/** Tokens replaced in `hydrateNewsCopy`: `{guideUrl}` `{buyerUrl}` `{howToUrl}` `{oopbuyHomeUrl}` `{homeCuratedUrl}` `{mlCatalogUrl}` `{oopbuyIssueUrl}` `{activityPointUrl}` `{openstarUrl}` `{rumorPatrolUrl}` `{jeansBrowseUrl}` `{jewelryBrowseUrl}` `{count}` */
+/** Tokens replaced in `hydrateNewsCopy`: `{guideUrl}` `{buyerUrl}` `{howToUrl}` `{oopbuyHomeUrl}` `{homeCuratedUrl}` `{mlCatalogUrl}` `{oopbuyIssueUrl}` `{activityPointUrl}` `{openstarUrl}` `{jeansBrowseUrl}` `{jewelryBrowseUrl}` `{count}` */
 export type NewsActivityItem = {
   title: string;
   pillVariant: 'internal' | 'external';
@@ -44,7 +44,6 @@ export type NewsCopy = {
 export const NEWS_MIRROR_PATHS = {
   POINT: '/news/oopbuy-activity/index.html',
   OPENSTAR: '/news/openstar-recruit/index.html',
-  RUMOR: '/news/rumor-patrol/index.html',
   JEANS: 'https://maisonlooks.com/zh/search?q=jeans',
   JEWELRY: 'https://maisonlooks.com/zh/search?q=jewelry',
 } as const;
@@ -73,7 +72,6 @@ export function hydrateNewsCopy(
     '{oopbuyIssueUrl}': O_ISSUE,
     '{activityPointUrl}': NEWS_MIRROR_PATHS.POINT,
     '{openstarUrl}': NEWS_MIRROR_PATHS.OPENSTAR,
-    '{rumorPatrolUrl}': NEWS_MIRROR_PATHS.RUMOR,
     '{jeansBrowseUrl}': NEWS_MIRROR_PATHS.JEANS,
     '{jewelryBrowseUrl}': NEWS_MIRROR_PATHS.JEWELRY,
     '{count}': String(urls.excerptCount),
@@ -123,13 +121,6 @@ const en: NewsCopy = {
     activityHeading: 'What each banner is about',
     activityIntroHtml: `Plain-English rundown of each tile below. Promo dates, tiers, and prizes always follow <a href="{oopbuyHomeUrl}" target="_blank" rel="noopener noreferrer">Oopbuy live rules</a>. The jeans and jewellery banners are shortcuts into filtered Spreadsheet catalogue search—everything else mirrors their official pages.`,
     activityItems: [
-      {
-        title: 'r/oopbuy · Rumor Patrol: “Overpriced Influencers” statement',
-        pillVariant: 'internal',
-        pillText: 'On this site',
-        bodyHtml: `<p>Mirrored <strong>r/oopbuy</strong> post on TikTok “shutdown” rumors, creator marketing fees, and transparency. Includes the campaign still from Reddit; the original thread also has video—we skip the player here for a fast read (<a href="https://www.reddit.com/r/oopbuy/comments/1t79h9r/rumor_patrol_why_we_said_goodbye_to_overpriced/" target="_blank" rel="noopener noreferrer">watch on Reddit</a>).</p>`,
-        moreHtml: `<p class="activity-explainer-more"><a href="{rumorPatrolUrl}">Read mirror · Rumor Patrol</a></p>`,
-      },
       {
         title: 'POINT SPRINT · high-discount redemption (Oopbuy × POINTSHAUL)',
         pillVariant: 'internal',
@@ -234,13 +225,6 @@ const de: NewsCopy = {
   activityIntroHtml: `Nachfolgend ein klar strukturierter Überblick pro Tile. Daten, Levels und Gewinne folgen immer den <a href="{oopbuyHomeUrl}" target="_blank" rel="noopener noreferrer">Live-Oopbuy-Vorgaben</a>. Jeans- und Schmuck-Karten sind Schnellstarts in gefilterte Katalogsuchergebnisse; alle anderen Inhalte spiegeln deren offiziellen Seiten.`,
   activityItems: [
     {
-      title: 'r/oopbuy · Rumor Patrol: Statement zu „Overpriced Influencers“',
-      pillVariant: 'internal',
-      pillText: 'Auf dieser Website',
-      bodyHtml: `<p>Gespiegelter <strong>r/oopbuy</strong>-Beitrag zu TikTok‑Gerüchten, Creator‑Marketing und Transparenz — mit Reddit‑Titelgrafik; das eingebettete Video fehlt in dieser leichten Lesespiegelung (<a href="https://www.reddit.com/r/oopbuy/comments/1t79h9r/rumor_patrol_why_we_said_goodbye_to_overpriced/" target="_blank" rel="noopener noreferrer">auf Reddit ansehen</a>).</p>`,
-      moreHtml: `<p class="activity-explainer-more"><a href="{rumorPatrolUrl}">Spiegel lesen · Rumor Patrol</a></p>`,
-    },
-    {
       title: 'POINT SPRINT · Hochrabatt-Einlösung (Oopbuy × POINTSHAUL)',
       pillVariant: 'internal',
       pillText: 'Auf dieser Website',
@@ -343,13 +327,6 @@ const pt: NewsCopy = {
   activityHeading: 'O que cada banner significa',
   activityIntroHtml: `Resumo direto de cada tile abaixo. Datas, níveis e prêmios seguem sempre as <a href="{oopbuyHomeUrl}" target="_blank" rel="noopener noreferrer">regras ao vivo da Oopbuy</a>. Os banners de jeans e joias são atalhos para busca filtrada no catálogo Spreadsheet; o restante espelha landing pages oficiais.`,
   activityItems: [
-    {
-      title: 'r/oopbuy · Rumor Patrol: comunicado “Overpriced Influencers”',
-      pillVariant: 'internal',
-      pillText: 'Neste site',
-      bodyHtml: `<p>Espelho do post em <strong>r/oopbuy</strong> sobre rumores no TikTok, taxas de marketing de criadores e transparência — arte estática do Reddit incluída; o vídeo original não está embutido aqui (<a href="https://www.reddit.com/r/oopbuy/comments/1t79h9r/rumor_patrol_why_we_said_goodbye_to_overpriced/" target="_blank" rel="noopener noreferrer">ver no Reddit</a>).</p>`,
-      moreHtml: `<p class="activity-explainer-more"><a href="{rumorPatrolUrl}">Ler espelho · Rumor Patrol</a></p>`,
-    },
     {
       title: 'POINT SPRINT · resgate com alto desconto (Oopbuy × POINTSHAUL)',
       pillVariant: 'internal',
@@ -454,13 +431,6 @@ const es: NewsCopy = {
   activityIntroHtml: `Resumen claro de cada tile. Fechas, tramos y premios siguen siempre las <a href="{oopbuyHomeUrl}" target="_blank" rel="noopener noreferrer">reglas en vivo de Oopbuy</a>. Los banners de vaqueros y joyería abren búsquedas filtradas en el catálogo Spreadsheet; el resto refleja sus páginas oficiales.`,
   activityItems: [
     {
-      title: 'r/oopbuy · Rumor Patrol: comunicado «Overpriced Influencers»',
-      pillVariant: 'internal',
-      pillText: 'En este sitio',
-      bodyHtml: `<p>Réplica del hilo en <strong>r/oopbuy</strong> sobre rumores en TikTok, gasto en creadores y transparencia — imagen incluida; el vídeo del hilo no está incrustado (<a href="https://www.reddit.com/r/oopbuy/comments/1t79h9r/rumor_patrol_why_we_said_goodbye_to_overpriced/" target="_blank" rel="noopener noreferrer">ver en Reddit</a>).</p>`,
-      moreHtml: `<p class="activity-explainer-more"><a href="{rumorPatrolUrl}">Leer réplica · Rumor Patrol</a></p>`,
-    },
-    {
       title: 'POINT SPRINT · canje con gran descuento (Oopbuy × POINTSHAUL)',
       pillVariant: 'internal',
       pillText: 'En este sitio',
@@ -563,13 +533,6 @@ const fr: NewsCopy = {
   activityHeading: 'Rôle de chaque bannière',
   activityIntroHtml: `Vue d’ensemble de chaque tuile. Dates, paliers et lots suivent toujours les <a href="{oopbuyHomeUrl}" target="_blank" rel="noopener noreferrer">règles live Oopbuy</a>. Jean et bijoux ouvrent des recherches filtrées dans le catalogue ; le reste reflète les pages officielles.`,
   activityItems: [
-    {
-      title: 'r/oopbuy · Rumor Patrol : communiqué « Overpriced Influencers »',
-      pillVariant: 'internal',
-      pillText: 'Sur ce site',
-      bodyHtml: `<p>Miroir du fil <strong>r/oopbuy</strong> sur rumeurs TikTok, budgets influenceurs et transparence — visuel Reddit inclus ; la vidéo du fil n’est pas intégrée ici (<a href="https://www.reddit.com/r/oopbuy/comments/1t79h9r/rumor_patrol_why_we_said_goodbye_to_overpriced/" target="_blank" rel="noopener noreferrer">voir sur Reddit</a>).</p>`,
-      moreHtml: `<p class="activity-explainer-more"><a href="{rumorPatrolUrl}">Lire le miroir · Rumor Patrol</a></p>`,
-    },
     {
       title: 'POINT SPRINT · remise à fort rabais (Oopbuy × POINTSHAUL)',
       pillVariant: 'internal',
@@ -674,13 +637,6 @@ const it: NewsCopy = {
   activityIntroHtml: `Sintesi di ogni tile. Date, soglie e premi seguono sempre le <a href="{oopbuyHomeUrl}" target="_blank" rel="noopener noreferrer">regole live Oopbuy</a>. Jeans e gioielli aprono ricerche filtrate nel catalogo; il resto rispecchia le pagine ufficiali.`,
   activityItems: [
     {
-      title: 'r/oopbuy · Rumor Patrol: comunicato “Overpriced Influencers”',
-      pillVariant: 'internal',
-      pillText: 'Su questo sito',
-      bodyHtml: `<p>Specchio del post <strong>r/oopbuy</strong> su voci TikTok, fee ai creator e trasparenza — grafica Reddit inclusa; niente player video qui (<a href="https://www.reddit.com/r/oopbuy/comments/1t79h9r/rumor_patrol_why_we_said_goodbye_to_overpriced/" target="_blank" rel="noopener noreferrer">guarda su Reddit</a>).</p>`,
-      moreHtml: `<p class="activity-explainer-more"><a href="{rumorPatrolUrl}">Apri specchio · Rumor Patrol</a></p>`,
-    },
-    {
       title: 'POINT SPRINT · riscatto ad alto sconto (Oopbuy × POINTSHAUL)',
       pillVariant: 'internal',
       pillText: 'Su questo sito',
@@ -783,13 +739,6 @@ const pl: NewsCopy = {
   activityHeading: 'Co oznaczają bannery',
   activityIntroHtml: `Krótki opis każdego kafelka. Daty, progi nagród i zasady zawsze wynikają z aktualnych <a href="{oopbuyHomeUrl}" target="_blank" rel="noopener noreferrer">zasad Oopbuy</a>. Jeans i biżuteria uruchamiają filtrowane wyszukiwanie w arkuszu; pozostałe odsyłają do oficjalnych materiałów.`,
   activityItems: [
-    {
-      title: 'r/oopbuy · Rumor Patrol: komunikat „Overpriced Influencers”',
-      pillVariant: 'internal',
-      pillText: 'Na tej stronie',
-      bodyHtml: `<p>Lustrzana kopia wpisu na <strong>r/oopbuy</strong> o plotkach z TikToka, kosztach marketingu u twórców i przejrzystości — grafika z Reddita jest, odtwarzacza wideo tu nie ma (<a href="https://www.reddit.com/r/oopbuy/comments/1t79h9r/rumor_patrol_why_we_said_goodbye_to_overpriced/" target="_blank" rel="noopener noreferrer">obejrzyj na Reddicie</a>).</p>`,
-      moreHtml: `<p class="activity-explainer-more"><a href="{rumorPatrolUrl}">Czytaj lustro · Rumor Patrol</a></p>`,
-    },
     {
       title: 'POINT SPRINT · wysoki rabat przy wymianie punktów (Oopbuy × POINTSHAUL)',
       pillVariant: 'internal',

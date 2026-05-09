@@ -35,8 +35,6 @@ const { locale, copy, homeHref, banners, excerpts } = Astro.props;
         </p>
         <h1 class="simple-page-title" id="news-heading">{copy.h1}</h1>
         <p class="section-intro news-intro" set:html={copy.topIntroHtml} />
-
-        <h2 class="h2-sub" id="home-banners-repeat">{copy.featuredBannerHeading}</h2>
         <p class="section-intro news-banners-intro" set:html={copy.featuredBannerIntroHtml} />
 
         <HomeCategoryBanners banners={banners} />

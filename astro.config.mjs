@@ -12,7 +12,6 @@ export default defineConfig({
       customPages: [
         new URL('/news/oopbuy-activity/', site).href,
         new URL('/news/openstar-recruit/', site).href,
-        new URL('/news/rumor-patrol/', site).href,
       ],
     }),
   ],
