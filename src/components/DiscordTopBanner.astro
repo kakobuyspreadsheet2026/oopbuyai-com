@@ -9,9 +9,9 @@ import {
  * CTA `/join/discord` keeps same-origin href; server-side invite URL comes from `defaultOopbuyDiscordUrl`.
  */
 const promoHref = '/join/discord';
-/** CDN asset intrinsic size (11520×510). */
-const imgW = 11520;
-const imgH = 510;
+/** Display aspect ratio for CLS (strip ~1920×85); CDN asset is larger. */
+const imgW = 1920;
+const imgH = 85;
 ---
 
 <div class="site-top-promo-shell">

@@ -18,7 +18,7 @@ function isOutboundUrl(href: string) {
 
 <div class="home-category-banners" aria-label="Oopbuy featured banners">
   {
-    banners.map((banner, bi) => (
+    banners.map((banner) => (
       <a
         class="home-category-banner-link"
         href={banner.href}
@@ -34,8 +34,7 @@ function isOutboundUrl(href: string) {
           class="home-category-banner-img"
           src={banner.src}
           alt={banner.alt}
-          loading={bi === 0 ? 'eager' : 'lazy'}
-          fetchpriority={bi === 0 ? 'high' : undefined}
+          loading="lazy"
           decoding="async"
           referrerpolicy="no-referrer"
         />
